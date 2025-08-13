@@ -1,0 +1,27 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+ # دستور جدید برای هدایت به پنل ادمین
+    RewriteRule ^admin/?$ /admin/login.php [L]
+    
+    # اگر درخواست برای یک فایل یا پوشه واقعی نیست
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # همه درخواست‌ها را به index.php بفرست
+    RewriteRule . /index.php [L]
+    
+</IfModule>
+
+# بهینه‌سازی سرعت با فعال کردن کش مرورگر
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access 1 year"
+    ExpiresByType image/jpeg "access 1 year"
+    ExpiresByType image/gif "access 1 year"
+    ExpiresByType image/png "access 1 year"
+    ExpiresByType text/css "access 1 month"
+    ExpiresByType application/javascript "access 1 month"
+    ExpiresDefault "access 2 days"
+</IfModule>
